@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder</title>
+</head>
+<body>
+    <h3>create new resume   <a href="{% url 'create' %}">here</a></h3>
+    <ul>
+        {% for i in details %}
+        <li>
+            {{i.name}}
+            <a href="{% url 'download' i.id %}">Dowmload Resume !</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

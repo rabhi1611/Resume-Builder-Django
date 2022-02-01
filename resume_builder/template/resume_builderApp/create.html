@@ -1,0 +1,22 @@
+<form action="" method="post">
+    {% csrf_token %}
+    <h5>name</h5>
+    {{form.name}}
+    <h5>phone</h5>
+    {{form.phone}}
+    <h5>email</h5>
+    {{form.email}}    
+    <h5>school</h5>
+    {{form.school}}
+    <h5>degree</h5>
+    {{form.degree}}
+    <h5>university</h5>
+    {{form.university}}
+    <h5>skill</h5>
+    {{form.skill}}
+    <h5>about_you</h5>
+    {{form.about_you}}
+    <h5>previous_work</h5>
+    {{form.previous_work}}
+    <button type="submit">submit</button>
+</form>
