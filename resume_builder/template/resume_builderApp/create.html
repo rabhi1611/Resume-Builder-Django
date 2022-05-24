@@ -1,22 +1,37 @@
-<form action="" method="post">
-    {% csrf_token %}
-    <h5>name</h5>
-    {{form.name}}
-    <h5>phone</h5>
-    {{form.phone}}
-    <h5>email</h5>
-    {{form.email}}    
-    <h5>school</h5>
-    {{form.school}}
-    <h5>degree</h5>
-    {{form.degree}}
-    <h5>university</h5>
-    {{form.university}}
-    <h5>skill</h5>
-    {{form.skill}}
-    <h5>about_you</h5>
-    {{form.about_you}}
-    <h5>previous_work</h5>
-    {{form.previous_work}}
-    <button type="submit">submit</button>
-</form>
+{% load crispy_forms_tags %}
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Resume Builder!</title>
+    <!--Import Google Icon Font-->
+    
+  <body>
+
+    <!--<div class="row">
+        <div class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+                <h4>Personal Details</h4>
+            -->
+                <form class="main_form " method="post">
+                    {% csrf_token %}
+                        {{personform | crispy}}
+                        <button class="btn btn-primary" type="submit">submit</button>     
+                </form>
+                <!--
+            </div>
+          </div>
+        </div>
+      </div>
+      -->
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+  </body>
+</html>
+      
+
+
+
+        

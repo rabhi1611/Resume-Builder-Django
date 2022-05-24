@@ -18,9 +18,14 @@ from django.urls import path
 from resume_builderApp import views
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('create/', views.create, name='create'),
+    path('person_create/', views.person_create, name='person_create'),
+    path('projectorjob_create/', views.projectorjob_create, name='projectorjob_create'),
+    path('areaofinterest_create/', views.areaofinterest_create, name='areaofinterest_create'),
+    path('academicform_create/', views.academicform_create, name='academicform_create'),
+    path('educationform_create/', views.educationform_create, name='educationform_create'),
+    path('professionalskill_create/', views.professionalskill_create, name='professionalskill_create'),
     path('resume/<pk>', views.view, name='view'),
     path('<pk>/', views.resumes, name='download'),
-    path('admin/', admin.site.urls),
 ]
