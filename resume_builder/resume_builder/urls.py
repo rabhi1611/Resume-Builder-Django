@@ -27,5 +27,5 @@ urlpatterns = [
     path('educationform_create/', views.educationform_create, name='educationform_create'),
     path('professionalskill_create/', views.professionalskill_create, name='professionalskill_create'),
     path('resume/<pk>', views.view, name='view'),
-    path('<pk>/', views.resumes, name='download'),
+    path('download/<pk>/', views.resumes, name='download'),
 ]

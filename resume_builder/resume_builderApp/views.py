@@ -30,11 +30,11 @@ def person_create(request):
 
     if request.method == 'POST':
         person_form = create_person_form(request.POST)
-        if form.is_valid():
-            form.save()
+        if person_form.is_valid():
+            person_form.save()
             return redirect('home')
     else:
-        form = create_person_form()
+        person_form = create_person_form()
     
     context = {
         'personform': person_form
@@ -148,15 +148,35 @@ def view(request, pk):
         'work_detail': work_detail,
         'academic_detail': academic_detail,
         'interest_detail': interest_detail,
+        'id' : pk,
     }
+    #print(pk)
     return render(request, 'resume_builderApp/resume.html', context)
 
 
     
 def resumes(request, pk):
-    user_profile = models.Person.objects.get(id = pk)
+    print(pk)
+    #user_profile = models.Person.objects.get(id = pk)
+
+    person_detail = models.Person.objects.get(id = pk)
+    education_detail = models.Education.objects.get(id = pk)
+    skill_detail = models.ProfessionalSkill.objects.get(id = pk)
+    work_detail = models.ProjectOrJob.objects.get(id = pk)
+    academic_detail = models.Academic.objects.get(id = pk)
+    interest_detail = models.AreaOfInterest.objects.get(id = pk)
+    context = {
+        'person_detail': person_detail,
+        'education_detail': education_detail,
+        'skill_detail': skill_detail,
+        'work_detail': work_detail,
+        'academic_detail': academic_detail,
+        'interest_detail': interest_detail,
+        'id' : pk,
+    }
+
     template = loader.get_template("resume_builderApp/resume.html")
-    html = template.render({'detail': user_profile})
+    html = template.render(context)
     option = {
         'page-size' : 'Letter',
         'encoding' : 'UTF-8'
