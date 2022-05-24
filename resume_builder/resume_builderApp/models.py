@@ -16,6 +16,9 @@ class Person(models.Model):
     github = models.URLField(blank=True)
     linkedin = models.URLField(blank=True)
 
+    def __str__(self):
+        return self.first_name + " " + self.last_name
+
     
 
 class Education(models.Model):
