@@ -17,14 +17,14 @@ class Person(models.Model):
     linkedin = models.URLField(blank=True)
 
     def __str__(self):
-        return " ".join([self.first_name, self.last_name])
+        return " ".join([self.first_name, self.last_name]), self.first_name, self.last_name, self.gender, self.age,self.address, self.email, self.github, self.linkedin
 
 
 class Education(models.Model):
     DEGREE_CHOICES = (
-        ('Phd', 'Male'),
+        ('Phd', 'Phd'),
         ('Mtech/MA/MSc/MCom/MBA', 'Masters'),
-        ('BE/Btech/BA/BSc/BCom', 'Masters'),
+        ('BE/Btech/BA/BSc/BCom', 'bachelors'),
         ('12th', 'High School')
     )
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
@@ -34,7 +34,7 @@ class Education(models.Model):
     result = models.CharField(max_length=5)
 
     def __str__(self):
-        return self.degree
+        return self.degree, self.stream, self.passing_year, self.result
 
 
 class ProjectOrJob(models.Model):
@@ -52,7 +52,7 @@ class ProjectOrJob(models.Model):
     description = models.TextField()
 
     def __str__(self):
-        return self.work
+        return self.work, self.person, self.title, self.start_date, self.end_date, self.description
 
 
 class ProfessionalSkill(models.Model):

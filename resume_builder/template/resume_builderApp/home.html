@@ -40,6 +40,15 @@
                        <li><a href="{% url 'professionalskill_create' %}">Your Skills</a></li>
                        <li><a href="{% url 'areaofinterest_create' %}">Your area of interest</a></li>
                    </ol>
+
+                   <h5>After completing all these steps</h5>
+                    <ol>
+                        
+                        {% for i in details %}
+                        <li><a href="{% url 'view' i.id %}">{{i.first_name}}'s resume</a></li>
+                        {% endfor %}
+                        
+                    </ol>
                 </div>
               </div>
             </div>

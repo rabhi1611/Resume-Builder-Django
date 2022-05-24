@@ -135,9 +135,19 @@ def professionalskill_create(request):
 
 
 def view(request, pk):
-    detail = models.Person.objects.get(id = pk)
+    person_detail = models.Person.objects.get(id = pk)
+    education_detail = models.Education.objects.get(id = pk)
+    skill_detail = models.ProfessionalSkill.objects.get(id = pk)
+    work_detail = models.ProjectOrJob.objects.get(id = pk)
+    academic_detail = models.Academic.objects.get(id = pk)
+    interest_detail = models.AreaOfInterest.objects.get(id = pk)
     context = {
-        'detail': detail
+        'person_detail': person_detail,
+        'education_detail': education_detail,
+        'skill_detail': skill_detail,
+        'work_detail': work_detail,
+        'academic_detail': academic_detail,
+        'interest_detail': interest_detail,
     }
     return render(request, 'resume_builderApp/resume.html', context)
 
