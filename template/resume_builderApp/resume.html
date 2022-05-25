@@ -156,17 +156,26 @@ td
             </p>-->
             <h3>Educational Qualifications</h3>
             
-            {{education_detail.degree}}
+            {% for i in  education_detail %}
+                {{i.degree}}
+            {% endfor %}
             <br>
-            {{education_detail.stream}}
+            {% for i in  education_detail %}
+                {{i.stream}}
+            {% endfor %}
             <br> 
-            {{education_detail.passing_year}}
+            {% for i in  education_detail %}
+                {{i.passing_year}}
+            {% endfor %}
             <br>
-            {{education_detail.result}}
+            {% for i in  education_detail %}
+                {{i.result}}
+            {% endfor %}
             
             <br>
-            {{academic_detail.academic_detail}}
-
+            {% for i in  academic_detail %}
+                {{i.academic_detail}}
+            {% endfor %}
             <!--<table>
                 <tr id="heading">
                     <td>Qualification</td>
@@ -209,11 +218,15 @@ td
         
             <h3>Technical Skills</h3>
             <p>
-                {{skill_detail.skill_detail}}
+                {% for i in  skill_detail %}
+                    {{i.skill_detail}}
+                    <br>
+                {% endfor %}
             </p>
             <h3>Personal Information:</h3>
             
-            {{person_detail.first_name}}
+
+            {{ person_detail.first_name }}
             <br>
             {{person_detail.last_name}}
             <br>
@@ -230,19 +243,21 @@ td
             {{person_detail.github}}
             
             <h3>Work / Project details</h3>
-            <p>
-                {{work_detail.title}}
+            {% for i in  work_detail %}
+            <p>    
+                    {{i.title}}
+                    <br>
+                    {{i.start_date}}
+                    <br>
+                    {{i.end_date}}
+                    <br>
+                    {{i.description}}
+                    <br>
+                    <br>
+                
             </p>
-
-            <p>
-                {{work_detail.start_date}}
-            </p>
-            <p>
-                {{work_detail.end_date}}
-            </p>
-            <p>
-                {{work_detail.description}}
-            </p>
+            {% endfor %}
+            
             <h3>Declaration</h3>
             <p>
             I hereby declare that the details furnished above are true and correct to the best of my knowledge and belief.</p>

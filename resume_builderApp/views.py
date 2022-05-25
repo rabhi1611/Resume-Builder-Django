@@ -137,11 +137,11 @@ def professionalskill_create(request):
 def view(request, pk):
     person_detail = models.Person.objects.get(id = pk)
 
-    education_detail = models.Education.objects.get(person = pk)
-    skill_detail = models.ProfessionalSkill.objects.get(person = pk)
-    work_detail = models.ProjectOrJob.objects.get(person = pk)
-    academic_detail = models.Academic.objects.get(person = pk)
-    interest_detail = models.AreaOfInterest.objects.get(person = pk)
+    education_detail = models.Education.objects.filter(person = pk)
+    skill_detail = models.ProfessionalSkill.objects.filter(person = pk)
+    work_detail = models.ProjectOrJob.objects.filter(person = pk)
+    academic_detail = models.Academic.objects.filter(person = pk)
+    interest_detail = models.AreaOfInterest.objects.filter(person = pk)
     context = {
         'person_detail': person_detail,
         'education_detail': education_detail,
@@ -161,11 +161,11 @@ def resumes(request, pk):
     #user_profile = models.Person.objects.get(id = pk)
 
     person_detail = models.Person.objects.get(id = pk)
-    education_detail = models.Education.objects.get(person = pk)
-    skill_detail = models.ProfessionalSkill.objects.get(person = pk)
-    work_detail = models.ProjectOrJob.objects.get(person = pk)
-    academic_detail = models.Academic.objects.get(person = pk)
-    interest_detail = models.AreaOfInterest.objects.get(person = pk)
+    education_detail = models.Education.objects.filter(person = pk)
+    skill_detail = models.ProfessionalSkill.objects.filter(person = pk)
+    work_detail = models.ProjectOrJob.objects.filter(person = pk)
+    academic_detail = models.Academic.objects.filter(person = pk)
+    interest_detail = models.AreaOfInterest.objects.filter(person = pk)
     context = {
         'person_detail': person_detail,
         'education_detail': education_detail,
