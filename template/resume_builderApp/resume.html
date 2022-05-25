@@ -155,7 +155,6 @@ td
                 <li>Contribute ideas to the team on how customers can be delighted</li></ul>
             </p>-->
             <h3>Educational Qualifications</h3>
-            
             {% for i in  education_detail %}
                 {{i.degree}}
             {% endfor %}
@@ -215,7 +214,6 @@ td
                 </tr>
             </table>
         -->
-        
             <h3>Technical Skills</h3>
             <p>
                 {% for i in  skill_detail %}
@@ -224,8 +222,6 @@ td
                 {% endfor %}
             </p>
             <h3>Personal Information:</h3>
-            
-
             {{ person_detail.first_name }}
             <br>
             {{person_detail.last_name}}
@@ -257,7 +253,6 @@ td
                 
             </p>
             {% endfor %}
-            
             <h3>Declaration</h3>
             <p>
             I hereby declare that the details furnished above are true and correct to the best of my knowledge and belief.</p>

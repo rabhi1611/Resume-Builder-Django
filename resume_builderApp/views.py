@@ -1,11 +1,14 @@
 from cProfile import Profile
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
+from requests import options
 from resume_builderApp import models
 # Create your views here.
 from .forms import create_person_form, create_academic_form, create_areaofinterest_form, create_education_form, create_professionalskill_form,create_projectorjob_form
 
 from django.http import HttpResponse
-from django.template import loader
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from django.views.generic import ListView
 import pdfkit
 import io
 import os
@@ -156,10 +159,9 @@ def view(request, pk):
 
 
     
-def resumes(request, pk):
-    print(pk)
-    #user_profile = models.Person.objects.get(id = pk)
-
+def resumes(request, *args, **kwargs):
+    pk = kwargs.get('pk')
+   
     person_detail = models.Person.objects.get(id = pk)
     education_detail = models.Education.objects.filter(person = pk)
     skill_detail = models.ProfessionalSkill.objects.filter(person = pk)
@@ -176,20 +178,29 @@ def resumes(request, pk):
         'id' : pk,
     }
 
-    template = loader.get_template("resume_builderApp/resume.html")
-    html = template.render(context)
-    option = {
-        'page-size' : 'Letter',
-        'encoding' : 'UTF-8'
-    }
+    template_path = 'resume_builderApp/resume.html'
+   #context = {'user': user}
+   # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
 
-    #C:\Program Files\wkhtmltopdf\bin
-    #config = pdfkit.configuration(wkhtmltopdf='C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe')
-    pdf = pdfkit.from_string(html,False, option)
-    #url = 'https://rohit-resume-builder.herokuapp.com/resume/' + pk
-    #pdf = pdfkit.from_url(url, 'out-test.pdf', configuration=config)
-    response = HttpResponse(pdf, content_type='application/pdf')
-    response['Content-Disposition'] = 'attachments'
+   # to directly download the pdf we need attachment 
+   # response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+
+   # to view on browser we can remove attachment 
+    response['Content-Disposition'] = 'filename="report.pdf"'
+
+   # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
+
+    
+   # create a pdf
+   
+    pisa_status = pisa.CreatePDF(
+      html.encode("UTF-8"), dest=response, encoding='UTF-8')
+   # if error then show some funy view
+    if pisa_status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
 
 
