@@ -136,11 +136,12 @@ def professionalskill_create(request):
 
 def view(request, pk):
     person_detail = models.Person.objects.get(id = pk)
-    education_detail = models.Education.objects.get(id = pk)
-    skill_detail = models.ProfessionalSkill.objects.get(id = pk)
-    work_detail = models.ProjectOrJob.objects.get(id = pk)
-    academic_detail = models.Academic.objects.get(id = pk)
-    interest_detail = models.AreaOfInterest.objects.get(id = pk)
+
+    education_detail = models.Education.objects.get(person = pk)
+    skill_detail = models.ProfessionalSkill.objects.get(person = pk)
+    work_detail = models.ProjectOrJob.objects.get(person = pk)
+    academic_detail = models.Academic.objects.get(person = pk)
+    interest_detail = models.AreaOfInterest.objects.get(person = pk)
     context = {
         'person_detail': person_detail,
         'education_detail': education_detail,
@@ -160,11 +161,11 @@ def resumes(request, pk):
     #user_profile = models.Person.objects.get(id = pk)
 
     person_detail = models.Person.objects.get(id = pk)
-    education_detail = models.Education.objects.get(id = pk)
-    skill_detail = models.ProfessionalSkill.objects.get(id = pk)
-    work_detail = models.ProjectOrJob.objects.get(id = pk)
-    academic_detail = models.Academic.objects.get(id = pk)
-    interest_detail = models.AreaOfInterest.objects.get(id = pk)
+    education_detail = models.Education.objects.get(person = pk)
+    skill_detail = models.ProfessionalSkill.objects.get(person = pk)
+    work_detail = models.ProjectOrJob.objects.get(person = pk)
+    academic_detail = models.Academic.objects.get(person = pk)
+    interest_detail = models.AreaOfInterest.objects.get(person = pk)
     context = {
         'person_detail': person_detail,
         'education_detail': education_detail,
@@ -183,10 +184,10 @@ def resumes(request, pk):
     }
 
     #C:\Program Files\wkhtmltopdf\bin
-    config = pdfkit.configuration(wkhtmltopdf='C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe')
-    #pdf = pdfkit.from_string(html,False, option)
-    url = 'https://rohit-resume-builder.herokuapp.com/resume/' + pk
-    pdf = pdfkit.from_url(url, 'out-test.pdf', configuration=config)
+    #config = pdfkit.configuration(wkhtmltopdf='C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe')
+    pdf = pdfkit.from_string(html,False, option)
+    #url = 'https://rohit-resume-builder.herokuapp.com/resume/' + pk
+    #pdf = pdfkit.from_url(url, 'out-test.pdf', configuration=config)
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachments'
     return response
