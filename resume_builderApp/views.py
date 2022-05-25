@@ -181,7 +181,12 @@ def resumes(request, pk):
         'page-size' : 'Letter',
         'encoding' : 'UTF-8'
     }
-    pdf = pdfkit.from_string(html,False, option)
+
+    #C:\Program Files\wkhtmltopdf\bin
+    config = pdfkit.configuration(wkhtmltopdf='C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe')
+    #pdf = pdfkit.from_string(html,False, option)
+    url = 'https://rohit-resume-builder.herokuapp.com/resume/' + pk
+    pdf = pdfkit.from_url(url, 'out-test.pdf', configuration=config)
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachments'
     return response
