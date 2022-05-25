@@ -1,0 +1,37 @@
+{% load crispy_forms_tags %}
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Resume Builder!</title>
+    <!--Import Google Icon Font-->
+    
+  <body>
+
+    <div class="row">
+        <div class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+                <h4>Personal Details</h4>
+            
+                <form class="main_form " method="post">
+                    {% csrf_token %}
+                        {{personform | crispy}}
+                        <button class="btn btn-primary" type="submit">submit</button>     
+                </form>
+                
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+  </body>
+</html>
+      
+
+
+
+        
